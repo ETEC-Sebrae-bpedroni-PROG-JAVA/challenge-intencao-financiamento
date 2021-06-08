@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intenções de Financiamento</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">Intenções
+			de Financiamento</h1>
+		<div class="card">
+			<div class="card-body">
+				<form method="POST" th:object="${intencao}"
+					th:action="@{/add-intencao}">
+					<div class="row mb-3">
+						<div>
+							<input type="hidden" th:field="*{id}">
+						</div>
+						<div class="col">
+							<label class="fw-bolder" for="nome">Cliente:</label> <input
+								type="text" class="form-control" th:errorclass="is-invalid"
+								placeholder="Nome do cliente" th:field="*{nomeCliente}">
+							<div th:errors="*{nomeCliente}" class="invalid-feedback"></div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-5">
+							<label class="fw-bolder" for="enderecoLogradouro">Endereco:</label>
+							<input type="text" class="form-control"
+								th:errorclass="is-invalid" placeholder="Endereco do cliente"
+								th:field="*{enderecoLogradouro}">
+							<div th:errors="*{enderecoLogradouro}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-2">
+							<label class="fw-bolder" for="enderecoNumero">Nº:</label> <input
+								type="text" class="form-control" th:errorclass="is-invalid"
+								placeholder="Nº" th:field="*{enderecoNumero}">
+							<div th:errors="*{enderecoNumero}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-2">
+							<label class="fw-bolder" for="enderecoCidade">Cidade:</label> <input
+								type="text" class="form-control" th:errorclass="is-invalid"
+								placeholder="Cidade" th:field="*{enderecoCidade}">
+							<div th:errors="*{enderecoCidade}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-1">
+							<label class="fw-bolder" for="enderecoEstado">Estado:</label> <select
+								class="form-select" th:field="*{enderecoEstado}">
+								<option value="AC">AC</option>
+								<option value="AL">AL</option>
+								<option value="AM">AM</option>
+								<option value="AP">AP</option>
+								<option value="BA">BA</option>
+								<option value="CE">CE</option>
+								<option value="DF">DF</option>
+								<option value="ES">ES</option>
+								<option value="GO">GO</option>
+								<option value="MA">MA</option>
+								<option value="MG">MG</option>
+								<option value="MS">MS</option>
+								<option value="MT">MT</option>
+								<option value="PA">PA</option>
+								<option value="PB">PB</option>
+								<option value="PE">PE</option>
+								<option value="PI">PI</option>
+								<option value="PR">PR</option>
+								<option value="RJ">RJ</option>
+								<option value="RN">RN</option>
+								<option value="RO">RO</option>
+								<option value="RR">RR</option>
+								<option value="RS">RS</option>
+								<option value="SC">SC</option>
+								<option value="SE">SE</option>
+								<option value="SP">SP</option>
+								<option value="TO">TO</option>
+							</select>
+							<div th:errors="*{enderecoEstado}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-2">
+							<label class="fw-bolder" for="enderecoCep">CEP:</label> <input
+								type="text" class="form-control" th:errorclass="is-invalid"
+								placeholder="CEP" th:field="*{enderecoCep}">
+							<div th:errors="*{enderecoCep}" class="invalid-feedback"></div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-4">
+							<label class="fw-bolder" for="cpf">CPF:</label> <input
+								type="text" class="form-control" th:errorclass="is-invalid"
+								placeholder="CPF" th:field="*{cpf}">
+							<div th:errors="*{cpf}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-4">
+							<label class="fw-bolder" for="rg">RG:</label> <input type="text"
+								class="form-control" th:errorclass="is-invalid" placeholder="RG"
+								th:field="*{rg}">
+							<div th:errors="*{rg}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-4">
+							<label class="fw-bolder" for="dataNascimento">Data de
+								Nascimento:</label> <input type="date" class="form-control"
+								th:errorclass="is-invalid" th:value="*{dataNascimento}"
+								th:field="*{dataNascimento}">
+							<div th:errors="*{dataNascimento}" class="invalid-feedback"></div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="fw-bolder" for="email">E-mail:</label> <input
+								type="email" class="form-control" th:errorclass="is-invalid"
+								th:field="*{email}">
+							<div th:errors="*{email}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label class="fw-bolder" for="telefoneResidencial">Telefone
+								Residencial:</label> <input type="text" class="form-control"
+								th:errorclass="is-invalid" placeholder="RG"
+								th:field="*{telefoneResidencial}">
+							<div th:errors="*{telefoneResidencial}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label class="fw-bolder" for="telefoneCelular">Telefone
+								Celular:</label> <input type="text" class="form-control"
+								th:errorclass="is-invalid" placeholder="Telefone Celular"
+								th:field="*{telefoneCelular}">
+							<div th:errors="*{telefoneCelular}" class="invalid-feedback"></div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-3">
+							<label class="fw-bolder" for="categoriaFinanciamento">Tipo
+								Financiamento:</label> <select class="form-select"
+								th:field="*{categoriaFinanciamento}">
+								<option
+									th:each="categ : ${T(br.gov.sp.etecsebrae.entity.CategoriaFinanciamento).values()}"
+									th:value="${categ}" th:text="${categ.valor}"></option>
+							</select>
+							<div th:errors="*{categoriaFinanciamento}"
+								class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label class="fw-bolder" for="quantidadeParcelamento">Quantidade
+								Parcelamento:</label> <input type="number" min="0" step="1"
+								class="form-control" th:errorclass="is-invalid"
+								placeholder="Quantidade Parcelamento"
+								th:field="*{quantidadeParcelamento}">
+							<div th:errors="*{quantidadeParcelamento}"
+								class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label class="fw-bolder" for="valorIntencao">Valor
+								Intenção:</label> <input type="number" min="0" step="0.01"
+								class="form-control" th:errorclass="is-invalid"
+								placeholder="Valor Intenção" th:field="*{valorIntencao}">
+							<div th:errors="*{valorIntencao}" class="invalid-feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label class="fw-bolder" for="salario">Salário:</label> <input
+								type="number" min="0" step="0.01" class="form-control"
+								th:errorclass="is-invalid" placeholder="Salário"
+								th:field="*{salario}">
+							<div th:errors="*{salario}" class="invalid-feedback"></div>
+						</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

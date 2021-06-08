@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intenções de Financiamento</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center shadow-lg p-3 mb-5 bg-body rounded">Intenções
+			de Financiamento</h1>
+		<div class="card">
+			<div class="card-header">
+				<a class="btn btn-primary" href="/nova-intencao" role="button">Nova
+					Intenção</a>
+			</div>
+			<div class="card-body">
+				<table class="text-center table table-striped">
+					<thead>
+						<tr>
+							<th class="fw-bolder" scope="col">Cliente</th>
+							<th class="fw-bolder" scope="col">Tipo Financiamento</th>
+							<th class="fw-bolder" scope="col">Valor Intenção</th>
+							<th class="fw-bolder" scope="col">Quantidade Parcelamento</th>
+							<th class="fw-bolder" scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="intencao : ${intencoes}">
+							<th class="fw-normal" th:text="${intencao.nomeCliente}"></th>
+							<th class="fw-normal"
+								th:text="${intencao.categoriaFinanciamento.valor}"></th>
+							<th class="fw-normal"
+								th:text="*{'R$ ' + #numbers.formatDecimal(intencao.valorIntencao, 1, 'POINT', 2, 'COMMA')}"></th>
+							<th class="fw-normal"
+								th:text="${#numbers.formatInteger(intencao.quantidadeParcelamento,1,'POINT')}"></th>
+							<th><a th:href="@{/intencao/{id}(id = ${intencao.id})}"
+								class="btn btn-success">Detalhar</a></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
